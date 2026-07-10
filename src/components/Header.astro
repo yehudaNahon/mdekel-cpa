@@ -30,10 +30,10 @@ const navIsActive = (href: string) =>
     <a
       href={localePath("/", locale)}
       class="group shrink-0 leading-none text-ink no-underline"
-      aria-label={`${SITE.name} ${m.nav_home()}`}
+      aria-label={`${m.brand_name()} ${m.nav_home()}`}
     >
       <span class="block font-display text-2xl tracking-[0.08em] sm:text-3xl"
-        >MYRI DEKEL</span
+        >{m.brand_name()}</span
       >
       <span
         class="mt-1 hidden text-[0.6rem] tracking-[0.32em] text-ink-soft uppercase min-[520px]:block"

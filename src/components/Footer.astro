@@ -23,7 +23,7 @@ const navItems = [
     <div>
       <a
         href={localePath("/", locale)}
-        class="font-display text-3xl tracking-[0.08em]">MYRI DEKEL</a
+        class="font-display text-3xl tracking-[0.08em]">{m.brand_name()}</a
       ><p class="mt-5 max-w-md text-powder">
         {m.site_tagline()}
         {m.footer_copy()}
@@ -65,6 +65,6 @@ const navItems = [
     class="border-t border-white/10 px-5 py-6 text-center text-sm text-powder/70"
   >
     &copy; {today.getFullYear()}
-    {SITE.name}. {m.footer_rights()}
+    {m.brand_name()}. {m.footer_rights()}
   </div>
 </footer>
