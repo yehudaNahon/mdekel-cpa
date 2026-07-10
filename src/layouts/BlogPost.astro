@@ -3,21 +3,23 @@ import type { CollectionEntry } from 'astro:content';
 import CTA from '../components/CTA.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import SiteLayout from './SiteLayout.astro';
+import { localePath, type Locale } from '../i18n/config';
+import { m } from '../paraglide/messages.js';
 
-type Props = CollectionEntry<'blog'>['data'];
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+type Props = CollectionEntry<'blog'>['data'] & { locale: Locale };
+const { title, description, pubDate, updatedDate, heroImage, locale } = Astro.props;
 ---
 
-<SiteLayout title={`${title} | M. Dekel CPA`} description={description} image={heroImage}>
+<SiteLayout locale={locale} title={`${title} | Myri Dekel CPA`} description={description} image={heroImage} canonicalPath={`/blog/${Astro.url.pathname.split('/').filter(Boolean).at(-1)}/`}>
 	<article>
 		<header class="bg-cream px-5 py-20 text-center sm:px-8 lg:py-28">
 			<div class="mx-auto max-w-4xl">
-				<a href="/blog/" class="text-xs font-bold tracking-[0.24em] text-coral-dark uppercase">Insights</a>
+				<a href={localePath('/blog/', locale)} class="text-xs font-bold tracking-[0.24em] text-coral-dark uppercase">{m.nav_insights()}</a>
 				<h1 class="mt-6 font-display text-5xl leading-tight text-balance text-ink sm:text-7xl">{title}</h1>
 				<p class="mx-auto mt-6 max-w-2xl text-xl text-ink-soft">{description}</p>
 				<div class="mt-8 text-sm tracking-wider text-ink-soft uppercase">
-					<FormattedDate date={pubDate} />
-					{updatedDate && <span> &middot; Updated <FormattedDate date={updatedDate} /></span>}
+					<FormattedDate date={pubDate} locale={locale} />
+					{updatedDate && <span> &middot; {m.updated()} <FormattedDate date={updatedDate} locale={locale} /></span>}
 				</div>
 			</div>
 		</header>
@@ -34,5 +36,5 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			</div>
 		</div>
 	</article>
-	<CTA title="Want to talk through what this means for you?" />
+	<CTA locale={locale} title={m.article_cta()} />
 </SiteLayout>

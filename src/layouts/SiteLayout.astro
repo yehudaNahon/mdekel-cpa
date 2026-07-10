@@ -2,36 +2,39 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { SITE_TITLE } from '../consts';
+import { m } from '../paraglide/messages.js';
+import { canonicalPathFrom, directionFor, type Locale } from '../i18n/config';
 
 interface Props {
 	title?: string;
 	description?: string;
 	image?: string;
-	language?: string;
-	direction?: 'ltr' | 'rtl';
+	locale: Locale;
+	canonicalPath?: string;
 }
 
 const {
 	title = SITE_TITLE,
-	description = SITE_DESCRIPTION,
+	description = m.site_description(),
 	image,
-	language = 'en',
-	direction = 'ltr',
+	locale,
+	canonicalPath = canonicalPathFrom(Astro.url.pathname),
 } = Astro.props;
+const direction = directionFor(locale);
 ---
 
 <!doctype html>
-<html lang={language} dir={direction}>
+<html lang={locale} dir={direction}>
 	<head>
-		<BaseHead title={title} description={description} image={image} />
+		<BaseHead title={title} description={description} image={image} locale={locale} canonicalPath={canonicalPath} />
 	</head>
 	<body>
-		<a href="#main-content" class="sr-only z-50 focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:rounded-sm focus:bg-ink focus:px-5 focus:py-3 focus:text-white">Skip to content</a>
-		<Header />
+		<a href="#main-content" class="sr-only z-50 focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:rounded-sm focus:bg-ink focus:px-5 focus:py-3 focus:text-white">{m.skip_content()}</a>
+		<Header locale={locale} canonicalPath={canonicalPath} />
 		<main id="main-content">
 			<slot />
 		</main>
-		<Footer />
+		<Footer locale={locale} />
 	</body>
 </html>

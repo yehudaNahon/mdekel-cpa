@@ -3,6 +3,8 @@ title: "Five numbers every business owner should know"
 description: "A simple monthly dashboard can turn financial reports into practical decisions."
 pubDate: "Jul 08 2022"
 heroImage: "/images/planning-session.jpg"
+locale: "en"
+translationKey: "first-post"
 ---
 
 Financial reports become useful when they answer the questions you are actually asking. You do not need to memorize every line of a balance sheet, but a small set of numbers can help you recognize patterns earlier and make more deliberate decisions.

@@ -1,14 +1,18 @@
 ---
 import { SITE } from '../consts';
+import { localePath, type Locale } from '../i18n/config';
+import { m } from '../paraglide/messages.js';
 interface Props {
+	locale: Locale;
 	eyebrow?: string;
 	title?: string;
 	description?: string;
 }
 const {
-	eyebrow = 'Start a conversation',
-	title = 'Ready for a clearer financial picture?',
-	description = 'Tell us what you are working through. We will help you identify a thoughtful next step.',
+	locale,
+	eyebrow = m.cta_eyebrow(),
+	title = m.cta_title(),
+	description = m.cta_description(),
 } = Astro.props;
 ---
 
@@ -17,6 +21,6 @@ const {
 		<p class="text-xs font-bold tracking-[0.24em] text-ink-soft uppercase">{eyebrow}</p>
 		<h2 class="mt-5 font-display text-4xl leading-tight text-ink sm:text-6xl">{title}</h2>
 		<p class="mx-auto mt-6 max-w-2xl text-lg text-ink-soft">{description}</p>
-		<a href={SITE.consultationHref} class="mt-9 inline-flex bg-ink px-8 py-4 text-sm font-bold tracking-[0.16em] text-white uppercase transition hover:bg-coral-dark">Schedule a consultation</a>
+		<a href={localePath(SITE.consultationHref, locale)} class="mt-9 inline-flex bg-ink px-8 py-4 text-sm font-bold tracking-[0.16em] text-white uppercase transition hover:bg-coral-dark">{m.cta_button()}</a>
 	</div>
 </section>

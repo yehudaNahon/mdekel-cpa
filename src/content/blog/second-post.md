@@ -2,7 +2,9 @@
 title: "A calmer approach to estimated taxes"
 description: "Small habits throughout the year can make tax payments more predictable."
 pubDate: "Jul 15 2022"
-heroImage: "/blog-placeholder-4.jpg"
+heroImage: "/images/tax-planning.jpg"
+locale: "en"
+translationKey: "second-post"
 ---
 
 Estimated taxes often feel stressful because they bring together uncertain income, changing rules, and several deadlines. A proactive routine cannot remove every surprise, but it can make the process much easier to manage.

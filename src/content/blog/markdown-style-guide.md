@@ -2,7 +2,9 @@
 title: "Year-end financial checklist for business owners"
 description: "A practical checklist for closing the year with cleaner records and fewer loose ends."
 pubDate: "Jun 19 2024"
-heroImage: "/blog-placeholder-1.jpg"
+heroImage: "/images/financial-desk.jpg"
+locale: "en"
+translationKey: "markdown-style-guide"
 ---
 
 Year-end work is easier when it begins before the final week of the year. Use this checklist to identify missing information, resolve old balances, and prepare for a more productive conversation with your accountant.

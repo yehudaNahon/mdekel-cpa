@@ -1,0 +1,14 @@
+---
+import { Image } from 'astro:assets';
+import founderPortrait from '../../assets/headshots/m-dekel-portrait.jpg';
+import founderSeated from '../../assets/headshots/m-dekel-seated.jpg';
+import CTA from '../../components/CTA.astro'; import SectionHeading from '../../components/SectionHeading.astro'; import SiteLayout from '../../layouts/SiteLayout.astro';
+import { LOCALES, isLocale } from '../../i18n/config'; import { m } from '../../paraglide/messages.js';
+export function getStaticPaths(){return LOCALES.map((lang)=>({params:{lang}}));} const locale=Astro.params.lang; if(!isLocale(locale)) return Astro.redirect('/he/');
+---
+<SiteLayout locale={locale} title={`${m.nav_about()} | Myri Dekel CPA`} description={m.about_meta()}>
+	<section class="bg-cream px-5 py-20 sm:px-8 lg:py-28"><div class="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-24"><div><p class="text-xs font-bold tracking-[0.26em] text-coral-dark uppercase">{m.about_eyebrow()}</p><h1 class="mt-6 font-display text-6xl leading-none text-balance sm:text-7xl">{m.about_title()}</h1><p class="mt-8 max-w-xl text-xl text-ink-soft">{m.about_intro()}</p></div><div class="relative mx-auto max-w-lg"><div class="absolute -end-8 -top-8 h-2/3 w-2/3 bg-powder"></div><Image src={founderPortrait} alt={m.founder_alt()} widths={[480,720,960]} sizes="(min-width:1024px) 40vw,80vw" class="relative aspect-[4/5] w-full object-cover shadow-soft"/></div></div></section>
+	<section class="px-5 py-24 sm:px-8 lg:py-32"><div class="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[0.75fr_1.25fr] lg:gap-24"><SectionHeading eyebrow={m.about_view_eyebrow()} title={m.about_view_title()}/><div class="space-y-6 text-lg text-ink-soft"><p>{m.about_p1()}</p><p>{m.about_p2()}</p><p>{m.about_p3()}</p></div></div></section>
+	<section class="bg-powder-light px-5 py-24 sm:px-8 lg:py-32"><div class="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-24"><Image src={founderSeated} alt={m.founder_alt()} widths={[480,720,960]} sizes="(min-width:1024px) 42vw,90vw" class="aspect-[4/5] w-full object-cover object-top shadow-card"/><div><SectionHeading eyebrow={m.about_values_eyebrow()} title={m.about_values_title()}/><div class="mt-10 space-y-8">{[[m.value_clarity(),m.value_clarity_desc()],[m.value_care(),m.value_care_desc()],[m.value_consistency(),m.value_consistency_desc()]].map(([title,copy])=><div class="border-s-2 border-coral ps-6"><h3 class="font-display text-2xl">{title}</h3><p class="mt-2 text-ink-soft">{copy}</p></div>)}</div></div></div></section>
+	<CTA locale={locale} title={m.about_cta()}/>
+</SiteLayout>

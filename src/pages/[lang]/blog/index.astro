@@ -1,0 +1,10 @@
+---
+import { getCollection } from 'astro:content'; import ArticleCard from '../../../components/ArticleCard.astro'; import CTA from '../../../components/CTA.astro'; import SiteLayout from '../../../layouts/SiteLayout.astro'; import { LOCALES,isLocale } from '../../../i18n/config'; import { m } from '../../../paraglide/messages.js';
+export function getStaticPaths(){return LOCALES.map((lang)=>({params:{lang}}));} const locale=Astro.params.lang; if(!isLocale(locale)) return Astro.redirect('/he/');
+const posts=(await getCollection('blog')).filter((post)=>post.data.locale===locale).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf()); const [featuredPost,...remainingPosts]=posts;
+---
+<SiteLayout locale={locale} title={`${m.nav_insights()} | Myri Dekel CPA`} description={m.blog_meta()}>
+	<section class="bg-powder px-5 py-20 sm:px-8 lg:py-28"><div class="mx-auto max-w-5xl text-center"><p class="text-xs font-bold tracking-[0.26em] text-ink-soft uppercase">{m.blog_eyebrow()}</p><h1 class="mt-6 font-display text-6xl leading-none text-balance sm:text-7xl">{m.blog_title()}</h1><p class="mx-auto mt-8 max-w-2xl text-xl text-ink-soft">{m.blog_intro()}</p></div></section>
+	<section class="px-5 py-24 sm:px-8 lg:py-32"><div class="mx-auto max-w-7xl">{featuredPost&&<ArticleCard post={featuredPost} featured locale={locale}/>}<div class="mt-20 grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">{remainingPosts.map((post)=><ArticleCard post={post} locale={locale}/>)}</div></div></section>
+	<CTA locale={locale} eyebrow={m.blog_cta_eyebrow()} title={m.blog_cta_title()}/>
+</SiteLayout>

@@ -1,0 +1,13 @@
+---
+import CTA from '../../components/CTA.astro'; import SectionHeading from '../../components/SectionHeading.astro'; import SiteLayout from '../../layouts/SiteLayout.astro';
+import { LOCALES,isLocale } from '../../i18n/config'; import { m } from '../../paraglide/messages.js';
+export function getStaticPaths(){return LOCALES.map((lang)=>({params:{lang}}));} const locale=Astro.params.lang; if(!isLocale(locale)) return Astro.redirect('/he/');
+const services=[[m.service_accounting(),m.service_accounting_desc()],[m.service_tax(),m.service_tax_desc()],[m.service_advisory(),m.service_advisory_desc()],[m.service_personal(),m.service_personal_desc()]];
+---
+<SiteLayout locale={locale} title={`${m.nav_services()} | Myri Dekel CPA`} description={m.services_meta()}>
+	<section class="bg-powder px-5 py-20 sm:px-8 lg:py-28"><div class="mx-auto max-w-5xl text-center"><p class="text-xs font-bold tracking-[0.26em] text-ink-soft uppercase">{m.services_eyebrow()}</p><h1 class="mt-6 font-display text-6xl leading-none text-balance sm:text-7xl">{m.services_title()}</h1><p class="mx-auto mt-8 max-w-3xl text-xl text-ink-soft">{m.services_intro()}</p></div></section>
+	<div class="mx-auto max-w-7xl px-5 pt-16 sm:px-8 lg:pt-20"><img src="/images/financial-desk.jpg" alt="" width="1800" height="1200" class="aspect-[16/7] w-full object-cover shadow-soft"/></div>
+	<section class="px-5 py-24 sm:px-8 lg:py-32"><div class="mx-auto max-w-7xl space-y-6">{services.map(([title,description],index)=><article class:list={['grid gap-10 p-8 sm:p-12 lg:grid-cols-[0.2fr_1.8fr] lg:p-16',index%2===0?'bg-cream':'bg-powder-light']}><p class="font-display text-5xl text-coral-dark">{String(index+1).padStart(2,'0')}</p><div><h2 class="font-display text-4xl sm:text-5xl">{title}</h2><p class="mt-5 max-w-3xl text-lg text-ink-soft">{description}</p></div></article>)}</div></section>
+	<section class="bg-ink px-5 py-24 sm:px-8 lg:py-28"><div class="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24"><SectionHeading eyebrow={m.expect_eyebrow()} title={m.expect_title()} theme="dark"/><div class="grid gap-8 sm:grid-cols-2">{[[m.expect_1(),m.expect_1_desc()],[m.expect_2(),m.expect_2_desc()],[m.expect_3(),m.expect_3_desc()],[m.expect_4(),m.expect_4_desc()]].map(([title,copy])=><div class="border-t border-white/20 pt-6"><h3 class="font-display text-2xl text-white">{title}</h3><p class="mt-3 text-powder">{copy}</p></div>)}</div></div></section>
+	<CTA locale={locale}/>
+</SiteLayout>

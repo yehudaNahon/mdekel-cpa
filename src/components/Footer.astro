@@ -1,31 +1,20 @@
 ---
-import { NAV_ITEMS, SITE } from '../consts';
+import { SITE } from '../consts';
+import { localePath, type Locale } from '../i18n/config';
+import { m } from '../paraglide/messages.js';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
 const today = new Date();
+const navItems = [
+	['/', m.nav_home()], ['/about/', m.nav_about()], ['/services/', m.nav_services()],
+	['/blog/', m.nav_insights()], ['/contact/', m.nav_contact()],
+] as const;
 ---
-
 <footer class="bg-ink text-white">
 	<div class="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.4fr_1fr_1fr] lg:py-20">
-		<div>
-			<a href="/" class="font-display text-3xl tracking-[0.08em]">M. DEKEL</a>
-			<p class="mt-5 max-w-md text-powder">{SITE.tagline} Thoughtful support for the numbers behind your life and business.</p>
-			<p class="mt-8 text-xs tracking-[0.18em] text-powder/70 uppercase">Working business details — replace before launch</p>
-		</div>
-		<div>
-			<h2 class="text-xs font-bold tracking-[0.2em] text-coral uppercase">Explore</h2>
-			<ul class="mt-5 space-y-3">
-				{NAV_ITEMS.map((item) => <li><a href={item.href} class="text-powder transition hover:text-white">{item.label}</a></li>)}
-			</ul>
-		</div>
-		<div>
-			<h2 class="text-xs font-bold tracking-[0.2em] text-coral uppercase">Contact</h2>
-			<address class="mt-5 space-y-3 text-powder not-italic">
-				<p>{SITE.address}</p>
-				<p><a href={`mailto:${SITE.email}`} class="hover:text-white">{SITE.email}</a></p>
-				<p><a href={`tel:${SITE.phone.replace(/[^+\d]/g, '')}`} class="hover:text-white">{SITE.phone}</a></p>
-			</address>
-		</div>
+		<div><a href={localePath('/', locale)} class="font-display text-3xl tracking-[0.08em]">MYRI DEKEL</a><p class="mt-5 max-w-md text-powder">{m.site_tagline()} {m.footer_copy()}</p><p class="mt-8 text-xs tracking-[0.18em] text-powder/70 uppercase">{m.footer_placeholder()}</p></div>
+		<div><h2 class="text-xs font-bold tracking-[0.2em] text-coral uppercase">{m.footer_explore()}</h2><ul class="mt-5 space-y-3">{navItems.map(([href, label]) => <li><a href={localePath(href, locale)} class="text-powder transition hover:text-white">{label}</a></li>)}</ul></div>
+		<div><h2 class="text-xs font-bold tracking-[0.2em] text-coral uppercase">{m.footer_contact()}</h2><address class="mt-5 space-y-3 text-powder not-italic"><p><a href={`mailto:${SITE.email}`} class="hover:text-white">{SITE.email}</a></p></address></div>
 	</div>
-	<div class="border-t border-white/10 px-5 py-6 text-center text-sm text-powder/70 sm:px-8">
-		&copy; {today.getFullYear()} {SITE.name}. All rights reserved.
-	</div>
+	<div class="border-t border-white/10 px-5 py-6 text-center text-sm text-powder/70">&copy; {today.getFullYear()} {SITE.name}. {m.footer_rights()}</div>
 </footer>

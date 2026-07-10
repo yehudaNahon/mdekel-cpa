@@ -2,7 +2,9 @@
 title: "When cash flow deserves a closer look"
 description: "Revenue can be growing while cash becomes tighter. Here is where to begin looking."
 pubDate: "Jul 22 2022"
-heroImage: "/blog-placeholder-2.jpg"
+heroImage: "/images/cash-flow-dashboard.jpg"
+locale: "en"
+translationKey: "third-post"
 ---
 
 It is possible for a profitable business to feel short of cash. Profit measures performance over a period; cash reflects the timing of money moving in and out. Understanding that timing is often the first step toward relieving pressure.
