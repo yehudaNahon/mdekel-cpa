@@ -1,0 +1,46 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { SITE } from '../consts';
+---
+
+<SiteLayout title="Contact | M. Dekel CPA" description="Start a conversation with M. Dekel CPA.">
+	<section class="bg-cream px-5 py-20 sm:px-8 lg:py-28">
+		<div class="mx-auto max-w-5xl text-center">
+			<p class="text-xs font-bold tracking-[0.26em] text-coral-dark uppercase">Contact</p>
+			<h1 class="mt-6 font-display text-6xl leading-none text-balance text-ink sm:text-7xl">Let’s make the next step clearer.</h1>
+			<p class="mx-auto mt-8 max-w-2xl text-xl text-ink-soft">Share a little about what is on your mind. This preview form does not send or save information.</p>
+		</div>
+	</section>
+
+	<section class="px-5 py-24 sm:px-8 lg:py-32">
+		<div class="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
+			<aside>
+				<p class="text-xs font-bold tracking-[0.22em] text-coral-dark uppercase">Working contact details</p>
+				<h2 class="mt-5 font-display text-4xl">Prefer to reach out directly?</h2>
+				<p class="mt-5 text-ink-soft">Replace these placeholders with verified business details before launch.</p>
+				<address class="mt-9 space-y-5 not-italic">
+					<div><p class="text-xs font-bold tracking-wider text-ink-soft uppercase">Email</p><a class="mt-1 inline-block text-xl underline decoration-coral underline-offset-4" href={`mailto:${SITE.email}`}>{SITE.email}</a></div>
+					<div><p class="text-xs font-bold tracking-wider text-ink-soft uppercase">Phone</p><a class="mt-1 inline-block text-xl underline decoration-coral underline-offset-4" href={`tel:${SITE.phone.replace(/[^+\d]/g, '')}`}>{SITE.phone}</a></div>
+					<div><p class="text-xs font-bold tracking-wider text-ink-soft uppercase">Location</p><p class="mt-1 text-xl">{SITE.address}</p></div>
+				</address>
+			</aside>
+
+			<div class="bg-powder-light p-7 sm:p-10 lg:p-14">
+				<div role="note" class="mb-8 border-s-4 border-coral-dark bg-paper p-4 text-sm text-ink-soft">
+					<strong class="text-ink">Preview only:</strong> this form is intentionally not connected to a submission service. Do not enter sensitive financial or personal information.
+				</div>
+				<form aria-describedby="form-notice" onsubmit="return false">
+					<p id="form-notice" class="sr-only">This demonstration form does not submit or save your information.</p>
+					<div class="grid gap-6 sm:grid-cols-2">
+						<label class="block text-sm font-bold tracking-wide text-ink">Name <span aria-hidden="true">*</span><input required name="name" autocomplete="name" class="mt-2 w-full border border-ink/20 bg-paper px-4 py-3 font-normal outline-none transition focus:border-coral-dark" /></label>
+						<label class="block text-sm font-bold tracking-wide text-ink">Email <span aria-hidden="true">*</span><input required type="email" name="email" autocomplete="email" class="mt-2 w-full border border-ink/20 bg-paper px-4 py-3 font-normal outline-none transition focus:border-coral-dark" /></label>
+						<label class="block text-sm font-bold tracking-wide text-ink sm:col-span-2">What can we help with?<select name="topic" class="mt-2 w-full border border-ink/20 bg-paper px-4 py-3 font-normal outline-none transition focus:border-coral-dark"><option>Accounting and reporting</option><option>Tax planning</option><option>Business advisory</option><option>Personal financial guidance</option><option>Something else</option></select></label>
+						<label class="block text-sm font-bold tracking-wide text-ink sm:col-span-2">Message<textarea name="message" rows="6" class="mt-2 w-full resize-y border border-ink/20 bg-paper px-4 py-3 font-normal outline-none transition focus:border-coral-dark"></textarea></label>
+					</div>
+					<button type="button" aria-describedby="demo-button-note" class="mt-7 cursor-not-allowed bg-ink/60 px-7 py-4 text-sm font-bold tracking-[0.16em] text-white uppercase" disabled>Send inquiry</button>
+					<p id="demo-button-note" class="mt-3 text-sm text-ink-soft">Submission will be enabled when a secure form service is connected.</p>
+				</form>
+			</div>
+		</div>
+	</section>
+</SiteLayout>

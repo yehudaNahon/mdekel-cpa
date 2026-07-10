@@ -1,0 +1,22 @@
+---
+import { SITE } from '../consts';
+interface Props {
+	eyebrow?: string;
+	title?: string;
+	description?: string;
+}
+const {
+	eyebrow = 'Start a conversation',
+	title = 'Ready for a clearer financial picture?',
+	description = 'Tell us what you are working through. We will help you identify a thoughtful next step.',
+} = Astro.props;
+---
+
+<section class="bg-powder px-5 py-20 sm:px-8 lg:py-28">
+	<div class="mx-auto max-w-4xl text-center">
+		<p class="text-xs font-bold tracking-[0.24em] text-ink-soft uppercase">{eyebrow}</p>
+		<h2 class="mt-5 font-display text-4xl leading-tight text-ink sm:text-6xl">{title}</h2>
+		<p class="mx-auto mt-6 max-w-2xl text-lg text-ink-soft">{description}</p>
+		<a href={SITE.consultationHref} class="mt-9 inline-flex bg-ink px-8 py-4 text-sm font-bold tracking-[0.16em] text-white uppercase transition hover:bg-coral-dark">Schedule a consultation</a>
+	</div>
+</section>
