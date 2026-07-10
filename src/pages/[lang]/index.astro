@@ -15,7 +15,7 @@ export function getStaticPaths() {
 }
 const locale = Astro.params.lang;
 if (!isLocale(locale)) return Astro.redirect("/he/");
-const posts = (await getCollection("blog"))
+const posts = (await getCollection("articles"))
   .filter((post) => post.data.locale === locale)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);

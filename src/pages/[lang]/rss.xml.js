@@ -15,15 +15,15 @@ export async function GET(context) {
       "תובנות מעשיות בנושאי חשבונאות, מסים ופיננסים.",
     ],
     en: [
-      "Insights | Myri Dekel CPA",
+      "Articles | Myri Dekel CPA",
       "Practical accounting, tax, and financial perspectives.",
     ],
     fr: [
-      "Conseils | Myri Dekel CPA",
-      "Conseils pratiques en comptabilité, fiscalité et finance.",
+      "Articles | Myri Dekel CPA",
+      "Articles pratiques en comptabilité, fiscalité et finance.",
     ],
   };
-  const posts = (await getCollection("blog")).filter(
+  const posts = (await getCollection("articles")).filter(
     (post) => post.data.locale === locale,
   );
   return rss({
@@ -32,7 +32,7 @@ export async function GET(context) {
     site: context.site,
     items: posts.map((post) => ({
       ...post.data,
-      link: `/${locale}/blog/${postSlug(post.id)}/`,
+      link: `/${locale}/articles/${postSlug(post.id)}/`,
     })),
   });
 }

@@ -6,7 +6,7 @@ import SiteLayout from "./SiteLayout.astro";
 import { localePath, type Locale } from "../i18n/config";
 import { m } from "../paraglide/messages.js";
 
-type Props = CollectionEntry<"blog">["data"] & { locale: Locale };
+type Props = CollectionEntry<"articles">["data"] & { locale: Locale };
 const { title, description, pubDate, updatedDate, heroImage, locale } =
   Astro.props;
 ---
@@ -16,15 +16,15 @@ const { title, description, pubDate, updatedDate, heroImage, locale } =
   title={`${title} | Myri Dekel CPA`}
   description={description}
   image={heroImage}
-  canonicalPath={`/blog/${Astro.url.pathname.split("/").filter(Boolean).at(-1)}/`}
+  canonicalPath={`/articles/${Astro.url.pathname.split("/").filter(Boolean).at(-1)}/`}
 >
   <article>
     <header class="bg-cream px-5 py-20 text-center sm:px-8 lg:py-28">
       <div class="mx-auto max-w-4xl">
         <a
-          href={localePath("/blog/", locale)}
+          href={localePath("/articles/", locale)}
           class="text-xs font-bold tracking-[0.24em] text-coral-dark uppercase"
-          >{m.nav_insights()}</a
+          >{m.nav_articles()}</a
         >
         <h1
           class="mt-6 font-display text-5xl leading-tight text-balance text-ink sm:text-7xl"

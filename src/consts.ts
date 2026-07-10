@@ -12,6 +12,6 @@ export const NAV_PATHS = [
   "/",
   "/about/",
   "/services/",
-  "/blog/",
+  "/articles/",
   "/contact/",
 ] as const;

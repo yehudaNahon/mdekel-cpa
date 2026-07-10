@@ -1,0 +1,25 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import ArticlePost from "../../../layouts/ArticlePost.astro";
+import { isLocale, postSlug, type Locale } from "../../../i18n/config";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("articles");
+  return articles.map((article) => ({
+    params: { lang: article.data.locale, slug: postSlug(article.id) },
+    props: article,
+  }));
+}
+
+type Props = CollectionEntry<"articles">;
+const article = Astro.props;
+const locale = Astro.params.lang;
+if (!isLocale(locale) || article.data.locale !== locale)
+  return Astro.redirect("/he/articles/");
+
+const { Content } = await render(article);
+---
+
+<ArticlePost {...article.data} locale={locale as Locale}>
+  <Content />
+</ArticlePost>

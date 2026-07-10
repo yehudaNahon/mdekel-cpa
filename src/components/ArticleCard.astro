@@ -5,20 +5,14 @@ import { localePath, postSlug, type Locale } from "../i18n/config";
 import { m } from "../paraglide/messages.js";
 
 interface Props {
-  post: CollectionEntry<"blog">;
-  featured?: boolean;
+  post: CollectionEntry<"articles">;
   locale: Locale;
 }
-const { post, featured = false, locale } = Astro.props;
-const href = localePath(`/blog/${postSlug(post.id)}/`, locale);
+const { post, locale } = Astro.props;
+const href = localePath(`/articles/${postSlug(post.id)}/`, locale);
 ---
 
-<article
-  class:list={[
-    "group",
-    featured && "grid items-center gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14",
-  ]}
->
+<article class="group">
   <a href={href} class="block overflow-hidden bg-powder-light">
     {
       post.data.heroImage ? (
@@ -27,32 +21,19 @@ const href = localePath(`/blog/${postSlug(post.id)}/`, locale);
           alt=""
           width="720"
           height="420"
-          loading={featured ? "eager" : "lazy"}
-          class:list={[
-            "w-full object-cover transition duration-500 group-hover:scale-[1.03]",
-            featured ? "aspect-[8/5]" : "aspect-[4/3]",
-          ]}
+          loading="lazy"
+          class="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
         />
       ) : (
-        <div
-          class:list={[
-            "w-full bg-powder",
-            featured ? "aspect-[8/5]" : "aspect-[4/3]",
-          ]}
-        />
+        <div class="aspect-[4/3] w-full bg-powder" />
       )
     }
   </a>
-  <div class={featured ? "" : "pt-6"}>
+  <div class="pt-6">
     <p class="text-xs font-bold tracking-[0.2em] text-coral-dark uppercase">
       <FormattedDate date={post.data.pubDate} locale={locale} />
     </p>
-    <h2
-      class:list={[
-        "mt-3 font-display leading-tight text-ink",
-        featured ? "text-4xl sm:text-5xl" : "text-3xl",
-      ]}
-    >
+    <h2 class="mt-3 font-display text-3xl leading-tight text-ink">
       <a
         href={href}
         class="decoration-coral underline-offset-8 group-hover:underline"
@@ -63,7 +44,7 @@ const href = localePath(`/blog/${postSlug(post.id)}/`, locale);
     <a
       href={href}
       class="mt-6 inline-flex text-sm font-bold tracking-[0.16em] text-ink uppercase"
-      >{m.read_insight()}
+      >{m.read_article()}
       <span
         aria-hidden="true"
         class="ms-3 transition group-hover:translate-x-1 rtl:group-hover:-translate-x-1"
