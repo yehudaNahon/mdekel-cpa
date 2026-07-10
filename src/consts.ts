@@ -3,9 +3,15 @@
 
 export const SITE_TITLE = "Myri Dekel CPA";
 export const SITE = {
-	name: SITE_TITLE,
-	email: "mdekel.cpa@gmail.com",
-	consultationHref: "/contact/",
+  name: SITE_TITLE,
+  email: "mdekel.cpa@gmail.com",
+  consultationHref: "/contact/",
 };
 
-export const NAV_PATHS = ['/', '/about/', '/services/', '/blog/', '/contact/'] as const;
+export const NAV_PATHS = [
+  "/",
+  "/about/",
+  "/services/",
+  "/blog/",
+  "/contact/",
+] as const;

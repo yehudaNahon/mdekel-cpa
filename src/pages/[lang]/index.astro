@@ -1,29 +1,185 @@
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
-import founderCutout from '../../assets/headshots/m-dekel-cutout.png';
-import founderPortrait from '../../assets/headshots/m-dekel-portrait.jpg';
-import ArticleCard from '../../components/ArticleCard.astro';
-import CTA from '../../components/CTA.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
-import ServiceCard from '../../components/ServiceCard.astro';
-import SiteLayout from '../../layouts/SiteLayout.astro';
-import { LOCALES, isLocale, localePath } from '../../i18n/config';
-import { m } from '../../paraglide/messages.js';
-export function getStaticPaths() { return LOCALES.map((lang) => ({ params: { lang } })); }
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import founderCutout from "../../assets/headshots/m-dekel-cutout.png";
+import founderPortrait from "../../assets/headshots/m-dekel-portrait.jpg";
+import ArticleCard from "../../components/ArticleCard.astro";
+import CTA from "../../components/CTA.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import ServiceCard from "../../components/ServiceCard.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { LOCALES, isLocale, localePath } from "../../i18n/config";
+import { m } from "../../paraglide/messages.js";
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
 const locale = Astro.params.lang;
-if (!isLocale(locale)) return Astro.redirect('/he/');
-const posts = (await getCollection('blog')).filter((post) => post.data.locale === locale).sort((a,b) => b.data.pubDate.valueOf()-a.data.pubDate.valueOf()).slice(0,3);
+if (!isLocale(locale)) return Astro.redirect("/he/");
+const posts = (await getCollection("blog"))
+  .filter((post) => post.data.locale === locale)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
+
 <SiteLayout locale={locale}>
-	<section class="relative overflow-hidden bg-cream"><div class="mx-auto grid min-h-[760px] max-w-7xl items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:py-28">
-		<div class="relative z-10 max-w-2xl"><p class="text-xs font-bold tracking-[0.26em] text-coral-dark uppercase">{m.home_eyebrow()}</p><h1 class="mt-6 font-display text-6xl leading-[0.98] text-balance text-ink sm:text-7xl lg:text-[6.2rem]">{m.home_title()}</h1><p class="mt-8 max-w-xl text-xl leading-relaxed text-ink-soft">{m.home_intro()}</p><div class="mt-10 flex flex-wrap gap-4"><a href={localePath('/contact/',locale)} class="bg-ink px-7 py-4 text-sm font-bold tracking-[0.16em] text-white uppercase hover:bg-coral-dark">{m.home_book()}</a><a href={localePath('/services/',locale)} class="border border-ink px-7 py-4 text-sm font-bold tracking-[0.16em] text-ink uppercase hover:bg-white">{m.home_view_services()}</a></div></div>
-		<div class="relative mx-auto w-full max-w-lg lg:ms-auto"><div class="absolute start-0 top-12 h-[82%] w-[88%] bg-powder sm:-start-10"></div><div class="absolute end-0 -bottom-8 size-44 rounded-full border-[28px] border-blush sm:-end-8"></div><Image src={founderPortrait} alt={m.home_image_alt()} widths={[480,720,960]} sizes="(min-width:1024px) 42vw,80vw" loading="eager" class="relative z-10 aspect-[4/5] w-full object-cover shadow-soft"/><div class="absolute start-0 -bottom-8 z-20 max-w-56 bg-paper p-5 shadow-card sm:-start-14 sm:p-6"><p class="font-display text-2xl leading-tight">{m.home_card()}</p></div></div>
-	</div></section>
-	<section class="bg-powder px-5 py-16 text-center sm:px-8 lg:py-20"><p class="mx-auto max-w-4xl font-display text-3xl leading-snug sm:text-4xl">{m.home_statement()}</p></section>
-	<section class="px-5 py-24 sm:px-8 lg:py-32"><div class="mx-auto max-w-7xl"><div class="flex flex-col justify-between gap-8 lg:flex-row lg:items-end"><SectionHeading eyebrow={m.home_services_eyebrow()} title={m.home_services_title()} description={m.home_services_description()}/><a href={localePath('/services/',locale)} class="shrink-0 text-sm font-bold tracking-[0.16em] uppercase underline decoration-coral decoration-2 underline-offset-8">{m.view_all_services()}</a></div><div class="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4"><ServiceCard number="01" title={m.service_accounting()} description={m.service_accounting_desc()} href={localePath('/services/',locale)} linkLabel={m.explore_service()}/><ServiceCard number="02" title={m.service_tax()} description={m.service_tax_desc()} href={localePath('/services/',locale)} linkLabel={m.explore_service()}/><ServiceCard number="03" title={m.service_advisory()} description={m.service_advisory_desc()} href={localePath('/services/',locale)} linkLabel={m.explore_service()}/><ServiceCard number="04" title={m.service_personal()} description={m.service_personal_desc()} href={localePath('/services/',locale)} linkLabel={m.explore_service()}/></div></div></section>
-	<section class="overflow-hidden bg-blush px-5 py-24 sm:px-8 lg:py-32"><div class="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24"><div class="relative mx-auto min-h-[480px] w-full max-w-md"><div class="absolute inset-x-4 bottom-0 h-[82%] rounded-t-full bg-powder"></div><Image src={founderCutout} alt={m.founder_alt()} class="absolute inset-x-0 bottom-0 z-10 mx-auto w-[92%]"/></div><div><SectionHeading eyebrow={m.home_founder_eyebrow()} title={m.home_founder_title()} description={m.home_founder_desc()}/><p class="mt-6 text-ink-soft">{m.home_founder_copy()}</p><a href={localePath('/about/',locale)} class="mt-9 inline-flex bg-ink px-7 py-4 text-sm font-bold tracking-[0.16em] text-white uppercase hover:bg-coral-dark">{m.home_founder_link()}</a></div></div></section>
-	<section class="px-5 py-24 sm:px-8 lg:py-32"><div class="mx-auto max-w-7xl"><SectionHeading eyebrow={m.process_eyebrow()} title={m.process_title()} align="center"/><ol class="mt-16 grid gap-10 md:grid-cols-3">{[['01',m.process_1(),m.process_1_desc()],['02',m.process_2(),m.process_2_desc()],['03',m.process_3(),m.process_3_desc()]].map(([number,title,copy])=><li class="border-t border-ink/20 pt-7"><span class="text-xs font-bold tracking-[0.2em] text-coral-dark">{number}</span><h3 class="mt-5 font-display text-3xl">{title}</h3><p class="mt-4 text-ink-soft">{copy}</p></li>)}</ol></div></section>
-	<section class="bg-cream px-5 py-24 sm:px-8 lg:py-32"><div class="mx-auto max-w-7xl"><SectionHeading eyebrow={m.journal_eyebrow()} title={m.journal_title()} description={m.journal_desc()}/><div class="mt-14 grid gap-10 md:grid-cols-3">{posts.map((post)=><ArticleCard post={post} locale={locale}/>)}</div></div></section>
-	<CTA locale={locale}/>
+  <section class="relative overflow-hidden bg-cream">
+    <div
+      class="mx-auto grid min-h-[760px] max-w-7xl items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:py-28"
+    >
+      <div class="relative z-10 max-w-2xl">
+        <p
+          class="text-xs font-bold tracking-[0.26em] text-coral-dark uppercase"
+        >
+          {m.home_eyebrow()}
+        </p><h1
+          class="mt-6 font-display text-6xl leading-[0.98] text-balance text-ink sm:text-7xl lg:text-[6.2rem]"
+        >
+          {m.home_title()}
+        </h1><p class="mt-8 max-w-xl text-xl leading-relaxed text-ink-soft">
+          {m.home_intro()}
+        </p><div class="mt-10 flex flex-wrap gap-4">
+          <a
+            href={localePath("/contact/", locale)}
+            class="bg-ink px-7 py-4 text-sm font-bold tracking-[0.16em] text-white uppercase hover:bg-coral-dark"
+            >{m.home_book()}</a
+          ><a
+            href={localePath("/services/", locale)}
+            class="border border-ink px-7 py-4 text-sm font-bold tracking-[0.16em] text-ink uppercase hover:bg-white"
+            >{m.home_view_services()}</a
+          >
+        </div>
+      </div>
+      <div class="relative mx-auto w-full max-w-lg lg:ms-auto">
+        <div
+          class="absolute start-0 top-12 h-[82%] w-[88%] bg-powder sm:-start-10"
+        >
+        </div><div
+          class="absolute end-0 -bottom-8 size-44 rounded-full border-[28px] border-blush sm:-end-8"
+        >
+        </div><Image
+          src={founderPortrait}
+          alt={m.home_image_alt()}
+          widths={[480, 720, 960]}
+          sizes="(min-width:1024px) 42vw,80vw"
+          loading="eager"
+          class="relative z-10 aspect-[4/5] w-full object-cover shadow-soft"
+        /><div
+          class="absolute start-0 -bottom-8 z-20 max-w-56 bg-paper p-5 shadow-card sm:-start-14 sm:p-6"
+        >
+          <p class="font-display text-2xl leading-tight">{m.home_card()}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-powder px-5 py-16 text-center sm:px-8 lg:py-20">
+    <p class="mx-auto max-w-4xl font-display text-3xl leading-snug sm:text-4xl">
+      {m.home_statement()}
+    </p>
+  </section>
+  <section class="px-5 py-24 sm:px-8 lg:py-32">
+    <div class="mx-auto max-w-7xl">
+      <div class="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+        <SectionHeading
+          eyebrow={m.home_services_eyebrow()}
+          title={m.home_services_title()}
+          description={m.home_services_description()}
+        /><a
+          href={localePath("/services/", locale)}
+          class="shrink-0 text-sm font-bold tracking-[0.16em] uppercase underline decoration-coral decoration-2 underline-offset-8"
+          >{m.view_all_services()}</a
+        >
+      </div><div class="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <ServiceCard
+          number="01"
+          title={m.service_accounting()}
+          description={m.service_accounting_desc()}
+          href={localePath("/services/", locale)}
+          linkLabel={m.explore_service()}
+        /><ServiceCard
+          number="02"
+          title={m.service_tax()}
+          description={m.service_tax_desc()}
+          href={localePath("/services/", locale)}
+          linkLabel={m.explore_service()}
+        /><ServiceCard
+          number="03"
+          title={m.service_advisory()}
+          description={m.service_advisory_desc()}
+          href={localePath("/services/", locale)}
+          linkLabel={m.explore_service()}
+        /><ServiceCard
+          number="04"
+          title={m.service_personal()}
+          description={m.service_personal_desc()}
+          href={localePath("/services/", locale)}
+          linkLabel={m.explore_service()}
+        />
+      </div>
+    </div>
+  </section>
+  <section class="overflow-hidden bg-blush px-5 py-24 sm:px-8 lg:py-32">
+    <div
+      class="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24"
+    >
+      <div class="relative mx-auto min-h-[480px] w-full max-w-md">
+        <div
+          class="absolute inset-x-4 bottom-0 h-[82%] rounded-t-full bg-powder"
+        >
+        </div><Image
+          src={founderCutout}
+          alt={m.founder_alt()}
+          class="absolute inset-x-0 bottom-0 z-10 mx-auto w-[92%]"
+        />
+      </div><div>
+        <SectionHeading
+          eyebrow={m.home_founder_eyebrow()}
+          title={m.home_founder_title()}
+          description={m.home_founder_desc()}
+        /><p class="mt-6 text-ink-soft">{m.home_founder_copy()}</p><a
+          href={localePath("/about/", locale)}
+          class="mt-9 inline-flex bg-ink px-7 py-4 text-sm font-bold tracking-[0.16em] text-white uppercase hover:bg-coral-dark"
+          >{m.home_founder_link()}</a
+        >
+      </div>
+    </div>
+  </section>
+  <section class="px-5 py-24 sm:px-8 lg:py-32">
+    <div class="mx-auto max-w-7xl">
+      <SectionHeading
+        eyebrow={m.process_eyebrow()}
+        title={m.process_title()}
+        align="center"
+      /><ol class="mt-16 grid gap-10 md:grid-cols-3">
+        {
+          [
+            ["01", m.process_1(), m.process_1_desc()],
+            ["02", m.process_2(), m.process_2_desc()],
+            ["03", m.process_3(), m.process_3_desc()],
+          ].map(([number, title, copy]) => (
+            <li class="border-t border-ink/20 pt-7">
+              <>
+                <span class="text-xs font-bold tracking-[0.2em] text-coral-dark">
+                  {number}
+                </span>
+                <h3 class="mt-5 font-display text-3xl">{title}</h3>
+                <p class="mt-4 text-ink-soft">{copy}</p>
+              </>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+  <section class="bg-cream px-5 py-24 sm:px-8 lg:py-32">
+    <div class="mx-auto max-w-7xl">
+      <SectionHeading
+        eyebrow={m.journal_eyebrow()}
+        title={m.journal_title()}
+        description={m.journal_desc()}
+      /><div class="mt-14 grid gap-10 md:grid-cols-3">
+        {posts.map((post) => <ArticleCard post={post} locale={locale} />)}
+      </div>
+    </div>
+  </section>
+  <CTA locale={locale} />
 </SiteLayout>

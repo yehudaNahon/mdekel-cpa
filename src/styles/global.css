@@ -2,80 +2,104 @@
 @plugin "@tailwindcss/typography";
 
 @font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
+  font-family: "Atkinson";
+  src: url("/fonts/atkinson-regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-@font-face { font-family: "Noto Sans Hebrew"; src: url("/fonts/noto-sans-hebrew-regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Noto Sans Hebrew"; src: url("/fonts/noto-sans-hebrew-bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
-@font-face { font-family: "Noto Serif Hebrew"; src: url("/fonts/noto-serif-hebrew-regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Noto Serif Hebrew"; src: url("/fonts/noto-serif-hebrew-bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+@font-face {
+  font-family: "Noto Sans Hebrew";
+  src: url("/fonts/noto-sans-hebrew-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans Hebrew";
+  src: url("/fonts/noto-sans-hebrew-bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Serif Hebrew";
+  src: url("/fonts/noto-serif-hebrew-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Serif Hebrew";
+  src: url("/fonts/noto-serif-hebrew-bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
 
 @font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
+  font-family: "Atkinson";
+  src: url("/fonts/atkinson-bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 @theme {
-	--font-sans: "Atkinson", ui-sans-serif, system-ui, sans-serif;
-	--font-display: Georgia, "Times New Roman", serif;
-	--color-ink: #24383a;
-	--color-ink-soft: #587073;
-	--color-powder: #c7dfe1;
-	--color-powder-light: #eaf3f3;
-	--color-blush: #f2ded8;
-	--color-coral: #eeb39f;
-	--color-coral-dark: #c87862;
-	--color-cream: #f7f1eb;
-	--color-paper: #fffdfb;
-	--shadow-soft: 0 24px 70px rgb(36 56 58 / 0.12);
-	--shadow-card: 0 14px 40px rgb(36 56 58 / 0.1);
+  --font-sans: "Atkinson", ui-sans-serif, system-ui, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+  --color-ink: #24383a;
+  --color-ink-soft: #587073;
+  --color-powder: #c7dfe1;
+  --color-powder-light: #eaf3f3;
+  --color-blush: #f2ded8;
+  --color-coral: #eeb39f;
+  --color-coral-dark: #c87862;
+  --color-cream: #f7f1eb;
+  --color-paper: #fffdfb;
+  --shadow-soft: 0 24px 70px rgb(36 56 58 / 0.12);
+  --shadow-card: 0 14px 40px rgb(36 56 58 / 0.1);
 }
 
 @layer base {
-	:root {
-		color-scheme: light;
-	}
+  :root {
+    color-scheme: light;
+  }
 
-	html {
-		scroll-behavior: smooth;
-	}
+  html {
+    scroll-behavior: smooth;
+  }
 
-	body {
-		@apply m-0 bg-paper font-sans text-[1.0625rem] leading-relaxed text-ink antialiased;
-	}
+  body {
+    @apply m-0 bg-paper font-sans text-[1.0625rem] leading-relaxed text-ink antialiased;
+  }
 
-	::selection {
-		@apply bg-coral text-ink;
-	}
+  ::selection {
+    @apply bg-coral text-ink;
+  }
 
-	:focus-visible {
-		outline: 3px solid var(--color-coral-dark);
-		outline-offset: 4px;
-	}
+  :focus-visible {
+    outline: 3px solid var(--color-coral-dark);
+    outline-offset: 4px;
+  }
 
-	button,
-	a {
-		-webkit-tap-highlight-color: transparent;
-	}
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-	*,
-	*::before,
-	*::after {
-		scroll-behavior: auto !important;
-		transition-duration: 0.01ms !important;
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
-	}
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 
-html:lang(he) body { font-family: "Noto Sans Hebrew", Arial, sans-serif; }
-html:lang(he) .font-display { font-family: "Noto Serif Hebrew", Georgia, serif; }
+html:lang(he) body {
+  font-family: "Noto Sans Hebrew", Arial, sans-serif;
+}
+html:lang(he) .font-display {
+  font-family: "Noto Serif Hebrew", Georgia, serif;
+}

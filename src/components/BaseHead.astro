@@ -1,18 +1,24 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import '../styles/global.css';
-import { LOCALES, localePath, type Locale } from '../i18n/config';
+import "../styles/global.css";
+import { LOCALES, localePath, type Locale } from "../i18n/config";
 
 interface Props {
-	title: string;
-	description: string;
-	image?: string;
-	locale: Locale;
-	canonicalPath: string;
+  title: string;
+  description: string;
+  image?: string;
+  locale: Locale;
+  canonicalPath: string;
 }
 
-const { title, description, image = '/images/planning-session.jpg', locale, canonicalPath } = Astro.props;
+const {
+  title,
+  description,
+  image = "/images/planning-session.jpg",
+  locale,
+  canonicalPath,
+} = Astro.props;
 const canonicalURL = new URL(localePath(canonicalPath, locale), Astro.site);
 ---
 
@@ -23,15 +29,59 @@ const canonicalURL = new URL(localePath(canonicalPath, locale), Astro.site);
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
-{locale === 'he' && <link rel="preload" href="/fonts/noto-sans-hebrew-regular.ttf" as="font" type="font/ttf" crossorigin />}
-{locale === 'he' && <link rel="preload" href="/fonts/noto-serif-hebrew-regular.ttf" as="font" type="font/ttf" crossorigin />}
+<link
+  rel="preload"
+  href="/fonts/atkinson-regular.woff"
+  as="font"
+  type="font/woff"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/atkinson-bold.woff"
+  as="font"
+  type="font/woff"
+  crossorigin
+/>
+{
+  locale === "he" && (
+    <link
+      rel="preload"
+      href="/fonts/noto-sans-hebrew-regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+  )
+}
+{
+  locale === "he" && (
+    <link
+      rel="preload"
+      href="/fonts/noto-serif-hebrew-regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+  )
+}
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
-{LOCALES.map((alternateLocale) => <link rel="alternate" hreflang={alternateLocale} href={new URL(localePath(canonicalPath, alternateLocale), Astro.site)} />)}
-<link rel="alternate" hreflang="x-default" href={new URL(localePath(canonicalPath, 'he'), Astro.site)} />
+{
+  LOCALES.map((alternateLocale) => (
+    <link
+      rel="alternate"
+      hreflang={alternateLocale}
+      href={new URL(localePath(canonicalPath, alternateLocale), Astro.site)}
+    />
+  ))
+}
+<link
+  rel="alternate"
+  hreflang="x-default"
+  href={new URL(localePath(canonicalPath, "he"), Astro.site)}
+/>
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>

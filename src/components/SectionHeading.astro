@@ -1,17 +1,48 @@
 ---
 interface Props {
-	eyebrow: string;
-	title: string;
-	description?: string;
-	align?: 'start' | 'center';
-	theme?: 'light' | 'dark';
+  eyebrow: string;
+  title: string;
+  description?: string;
+  align?: "start" | "center";
+  theme?: "light" | "dark";
 }
 
-const { eyebrow, title, description, align = 'start', theme = 'light' } = Astro.props;
+const {
+  eyebrow,
+  title,
+  description,
+  align = "start",
+  theme = "light",
+} = Astro.props;
 ---
 
-<div class:list={['max-w-3xl', align === 'center' && 'mx-auto text-center']}>
-	<p class:list={['text-xs font-bold tracking-[0.24em] uppercase', theme === 'dark' ? 'text-coral' : 'text-coral-dark']}>{eyebrow}</p>
-	<h2 class:list={['mt-4 font-display text-4xl leading-tight text-balance sm:text-5xl', theme === 'dark' ? 'text-white' : 'text-ink']}>{title}</h2>
-	{description && <p class:list={['mt-5 text-lg', theme === 'dark' ? 'text-powder' : 'text-ink-soft']}>{description}</p>}
+<div class:list={["max-w-3xl", align === "center" && "mx-auto text-center"]}>
+  <p
+    class:list={[
+      "text-xs font-bold tracking-[0.24em] uppercase",
+      theme === "dark" ? "text-coral" : "text-coral-dark",
+    ]}
+  >
+    {eyebrow}
+  </p>
+  <h2
+    class:list={[
+      "mt-4 font-display text-4xl leading-tight text-balance sm:text-5xl",
+      theme === "dark" ? "text-white" : "text-ink",
+    ]}
+  >
+    {title}
+  </h2>
+  {
+    description && (
+      <p
+        class:list={[
+          "mt-5 text-lg",
+          theme === "dark" ? "text-powder" : "text-ink-soft",
+        ]}
+      >
+        {description}
+      </p>
+    )
+  }
 </div>

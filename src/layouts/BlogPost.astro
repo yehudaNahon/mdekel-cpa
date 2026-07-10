@@ -1,40 +1,75 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import CTA from '../components/CTA.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-import SiteLayout from './SiteLayout.astro';
-import { localePath, type Locale } from '../i18n/config';
-import { m } from '../paraglide/messages.js';
+import type { CollectionEntry } from "astro:content";
+import CTA from "../components/CTA.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import SiteLayout from "./SiteLayout.astro";
+import { localePath, type Locale } from "../i18n/config";
+import { m } from "../paraglide/messages.js";
 
-type Props = CollectionEntry<'blog'>['data'] & { locale: Locale };
-const { title, description, pubDate, updatedDate, heroImage, locale } = Astro.props;
+type Props = CollectionEntry<"blog">["data"] & { locale: Locale };
+const { title, description, pubDate, updatedDate, heroImage, locale } =
+  Astro.props;
 ---
 
-<SiteLayout locale={locale} title={`${title} | Myri Dekel CPA`} description={description} image={heroImage} canonicalPath={`/blog/${Astro.url.pathname.split('/').filter(Boolean).at(-1)}/`}>
-	<article>
-		<header class="bg-cream px-5 py-20 text-center sm:px-8 lg:py-28">
-			<div class="mx-auto max-w-4xl">
-				<a href={localePath('/blog/', locale)} class="text-xs font-bold tracking-[0.24em] text-coral-dark uppercase">{m.nav_insights()}</a>
-				<h1 class="mt-6 font-display text-5xl leading-tight text-balance text-ink sm:text-7xl">{title}</h1>
-				<p class="mx-auto mt-6 max-w-2xl text-xl text-ink-soft">{description}</p>
-				<div class="mt-8 text-sm tracking-wider text-ink-soft uppercase">
-					<FormattedDate date={pubDate} locale={locale} />
-					{updatedDate && <span> &middot; {m.updated()} <FormattedDate date={updatedDate} locale={locale} /></span>}
-				</div>
-			</div>
-		</header>
+<SiteLayout
+  locale={locale}
+  title={`${title} | Myri Dekel CPA`}
+  description={description}
+  image={heroImage}
+  canonicalPath={`/blog/${Astro.url.pathname.split("/").filter(Boolean).at(-1)}/`}
+>
+  <article>
+    <header class="bg-cream px-5 py-20 text-center sm:px-8 lg:py-28">
+      <div class="mx-auto max-w-4xl">
+        <a
+          href={localePath("/blog/", locale)}
+          class="text-xs font-bold tracking-[0.24em] text-coral-dark uppercase"
+          >{m.nav_insights()}</a
+        >
+        <h1
+          class="mt-6 font-display text-5xl leading-tight text-balance text-ink sm:text-7xl"
+        >
+          {title}
+        </h1>
+        <p class="mx-auto mt-6 max-w-2xl text-xl text-ink-soft">
+          {description}
+        </p>
+        <div class="mt-8 text-sm tracking-wider text-ink-soft uppercase">
+          <FormattedDate date={pubDate} locale={locale} />
+          {
+            updatedDate && (
+              <span>
+                {" "}
+                &middot; {m.updated()}{" "}
+                <FormattedDate date={updatedDate} locale={locale} />
+              </span>
+            )
+          }
+        </div>
+      </div>
+    </header>
 
-		{heroImage && (
-			<div class="mx-auto -mb-8 max-w-6xl px-5 pt-16 sm:px-8 lg:pt-20">
-				<img src={heroImage} alt="" width="1200" height="675" class="aspect-[16/9] w-full object-cover shadow-soft" />
-			</div>
-		)}
+    {
+      heroImage && (
+        <div class="mx-auto -mb-8 max-w-6xl px-5 pt-16 sm:px-8 lg:pt-20">
+          <img
+            src={heroImage}
+            alt=""
+            width="1200"
+            height="675"
+            class="aspect-[16/9] w-full object-cover shadow-soft"
+          />
+        </div>
+      )
+    }
 
-		<div class="mx-auto max-w-3xl px-5 py-24 sm:px-8 lg:py-32">
-			<div class="prose prose-lg prose-headings:font-display prose-headings:font-normal prose-headings:text-ink prose-p:text-ink-soft prose-a:text-coral-dark prose-a:decoration-coral prose-strong:text-ink prose-blockquote:border-coral prose-blockquote:text-ink prose-code:text-ink prose-pre:bg-ink prose-img:rounded-none max-w-none">
-				<slot />
-			</div>
-		</div>
-	</article>
-	<CTA locale={locale} title={m.article_cta()} />
+    <div class="mx-auto max-w-3xl px-5 py-24 sm:px-8 lg:py-32">
+      <div
+        class="prose prose-lg prose-headings:font-display prose-headings:font-normal prose-headings:text-ink prose-p:text-ink-soft prose-a:text-coral-dark prose-a:decoration-coral prose-strong:text-ink prose-blockquote:border-coral prose-blockquote:text-ink prose-code:text-ink prose-pre:bg-ink prose-img:rounded-none max-w-none"
+      >
+        <slot />
+      </div>
+    </div>
+  </article>
+  <CTA locale={locale} title={m.article_cta()} />
 </SiteLayout>

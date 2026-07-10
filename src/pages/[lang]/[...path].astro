@@ -1,6 +1,6 @@
 ---
 export const prerender = false;
-import { isLocale } from '../../i18n/config';
-const locale = isLocale(Astro.params.lang) ? Astro.params.lang : 'he';
+import { isLocale } from "../../i18n/config";
+const locale = isLocale(Astro.params.lang) ? Astro.params.lang : "he";
 return Astro.redirect(`/${locale}/`, 302);
 ---

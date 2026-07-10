@@ -18,13 +18,19 @@ The locally bundled Noto Sans Hebrew and Noto Serif Hebrew files are provided by
 
 Install dependencies with `npm install`, then use the scripts below.
 
-| Command                           | Action                                          |
-| :-------------------------------- | :---------------------------------------------- |
-| `npm run dev`                     | Start the local Astro development server        |
-| `npm run build`                   | Build the production site                       |
-| `npm run check`                   | Build, type-check, and run a Cloudflare dry-run |
-| `npm run preview`                 | Build and preview through Wrangler              |
-| `npm run deploy`                  | Deploy to Cloudflare Workers                    |
+| Command                | Action                                          |
+| :--------------------- | :---------------------------------------------- |
+| `npm run dev`          | Start the local Astro development server        |
+| `npm run build`        | Build the production site                       |
+| `npm run check`        | Build, type-check, and run a Cloudflare dry-run |
+| `npm run format`       | Format supported files with Prettier            |
+| `npm run format:check` | Check formatting without changing files         |
+| `npm run preview`      | Build and preview through Wrangler              |
+| `npm run deploy`       | Deploy to Cloudflare Workers                    |
+
+`npm install` installs the Husky Git hooks automatically. Before each commit,
+lint-staged formats supported staged files with Prettier, then `npm run check`
+must pass before Git creates the commit.
 
 ## Before launch
 

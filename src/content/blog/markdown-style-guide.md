@@ -37,12 +37,12 @@ Create one secure location for loan statements, legal agreements, insurance reco
 
 Write down known changes such as hiring plans, a move, new financing, major purchases, or changes in ownership. These details can shape projections and tax planning.
 
-| Area | Useful evidence |
-| --- | --- |
-| Cash | Final bank statements and reconciliations |
-| Revenue | Open invoices and payment reports |
+| Area     | Useful evidence                             |
+| -------- | ------------------------------------------- |
+| Cash     | Final bank statements and reconciliations   |
+| Revenue  | Open invoices and payment reports           |
 | Expenses | Bills, receipts, and credit card statements |
-| Payroll | Employee and contractor records |
-| Assets | Purchase and sale documents |
+| Payroll  | Employee and contractor records             |
+| Assets   | Purchase and sale documents                 |
 
 > This checklist is general information. Your industry, entity, and jurisdiction may require additional records or procedures.

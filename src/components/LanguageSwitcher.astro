@@ -1,49 +1,81 @@
 ---
-import { LOCALES, LOCALE_LABELS, localePath, type Locale } from '../i18n/config';
-import { m } from '../paraglide/messages.js';
+import {
+  LOCALES,
+  LOCALE_LABELS,
+  localePath,
+  type Locale,
+} from "../i18n/config";
+import { m } from "../paraglide/messages.js";
 
 interface Props {
-	locale: Locale;
-	canonicalPath: string;
+  locale: Locale;
+  canonicalPath: string;
 }
 
 const { locale, canonicalPath } = Astro.props;
 ---
 
 <details class="group/language relative">
-	<summary
-		class="flex cursor-pointer list-none items-center gap-2 border border-ink/15 bg-paper px-3 py-2 text-xs font-bold tracking-[0.12em] text-ink uppercase transition hover:border-coral-dark hover:bg-cream marker:hidden"
-		aria-label={m.language_label()}
-	>
-		<svg aria-hidden="true" viewBox="0 0 24 24" class="size-4 text-coral-dark" fill="none" stroke="currentColor" stroke-width="1.5">
-			<circle cx="12" cy="12" r="9"></circle>
-			<path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9S14.5 18.3 12 21c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z"></path>
-		</svg>
-		<span>{locale.toUpperCase()}</span>
-		<svg aria-hidden="true" viewBox="0 0 12 8" class="size-3 transition group-open/language:rotate-180" fill="none" stroke="currentColor" stroke-width="1.5">
-			<path d="m1 1 5 5 5-5"></path>
-		</svg>
-	</summary>
+  <summary
+    class="flex cursor-pointer list-none items-center gap-2 border border-ink/15 bg-paper px-3 py-2 text-xs font-bold tracking-[0.12em] text-ink uppercase transition hover:border-coral-dark hover:bg-cream marker:hidden"
+    aria-label={m.language_label()}
+  >
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      class="size-4 text-coral-dark"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+    >
+      <circle cx="12" cy="12" r="9"></circle>
+      <path
+        d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9S14.5 18.3 12 21c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z"
+      ></path>
+    </svg>
+    <span>{locale.toUpperCase()}</span>
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 12 8"
+      class="size-3 transition group-open/language:rotate-180"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+    >
+      <path d="m1 1 5 5 5-5"></path>
+    </svg>
+  </summary>
 
-	<ul class="absolute end-0 top-[calc(100%+0.5rem)] z-50 min-w-40 border border-ink/10 bg-paper p-2 shadow-card">
-		{LOCALES.map((item) => (
-			<li>
-				<a
-					href={localePath(canonicalPath, item)}
-					hreflang={item}
-					lang={item}
-					aria-current={item === locale ? 'true' : undefined}
-					data-locale={item}
-					class:list={[
-						'flex items-center justify-between gap-5 px-3 py-2.5 text-sm transition',
-						item === locale ? 'bg-powder-light font-bold text-ink' : 'text-ink-soft hover:bg-cream hover:text-ink',
-					]}
-					onclick="document.cookie='PARAGLIDE_LOCALE='+this.dataset.locale+'; path=/; max-age=34560000; SameSite=Lax'"
-				>
-					<span>{LOCALE_LABELS[item]}</span>
-					{item === locale && <span class="size-1.5 rounded-full bg-coral-dark" aria-hidden="true"></span>}
-				</a>
-			</li>
-		))}
-	</ul>
+  <ul
+    class="absolute end-0 top-[calc(100%+0.5rem)] z-50 min-w-40 border border-ink/10 bg-paper p-2 shadow-card"
+  >
+    {
+      LOCALES.map((item) => (
+        <li>
+          <a
+            href={localePath(canonicalPath, item)}
+            hreflang={item}
+            lang={item}
+            aria-current={item === locale ? "true" : undefined}
+            data-locale={item}
+            class:list={[
+              "flex items-center justify-between gap-5 px-3 py-2.5 text-sm transition",
+              item === locale
+                ? "bg-powder-light font-bold text-ink"
+                : "text-ink-soft hover:bg-cream hover:text-ink",
+            ]}
+            onclick="document.cookie='PARAGLIDE_LOCALE='+this.dataset.locale+'; path=/; max-age=34560000; SameSite=Lax'"
+          >
+            <span>{LOCALE_LABELS[item]}</span>
+            {item === locale && (
+              <span
+                class="size-1.5 rounded-full bg-coral-dark"
+                aria-hidden="true"
+              />
+            )}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </details>
