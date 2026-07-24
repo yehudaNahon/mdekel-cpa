@@ -25,30 +25,21 @@ const navIsActive = (href: string) =>
   class="sticky top-0 z-40 border-b border-ink/8 bg-paper/95 backdrop-blur-md"
 >
   <nav
-    class="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-2 px-5 sm:gap-4 sm:px-8"
+    class="mx-auto flex min-h-24 max-w-7xl items-center justify-between gap-2 px-5 sm:gap-4 sm:px-8"
     aria-label={m.nav_primary()}
   >
     <a
       href={localePath("/", locale)}
-      class="group flex shrink-0 items-center gap-2.5 leading-none text-ink no-underline sm:gap-3"
+      class="group flex shrink-0 items-center leading-none text-ink no-underline"
       aria-label={`${m.brand_name()} ${m.nav_home()}`}
     >
       <img
-        src="/favicon.svg"
+        src="/images/myri-dekel-logo.png"
         alt=""
-        width="48"
-        height="48"
-        class="size-10 sm:size-12"
+        width="390"
+        height="310"
+        class="h-20 w-auto"
       />
-      <span>
-        <span class="block font-display text-3xl tracking-[0.06em] sm:text-4xl"
-          >{m.brand_name()}</span
-        >
-        <span
-          class="mt-1 hidden text-[0.5rem] tracking-[0.24em] text-ink-soft uppercase min-[520px]:block"
-          >{m.professional_title()}</span
-        >
-      </span>
     </a>
     <div class="hidden items-center gap-4 lg:flex">
       {

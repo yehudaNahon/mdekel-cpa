@@ -24,8 +24,18 @@ const navItems = [
     <div>
       <a
         href={localePath("/", locale)}
-        class="font-display text-3xl tracking-[0.08em]">{m.brand_name()}</a
-      ><p class="mt-5 max-w-md text-powder">
+        class="inline-flex bg-paper px-4 py-3"
+        aria-label={`${m.brand_name()} ${m.nav_home()}`}
+      >
+        <img
+          src="/images/myri-dekel-logo.png"
+          alt=""
+          width="390"
+          height="310"
+          class="h-32 w-auto"
+        />
+      </a>
+      <p class="mt-5 max-w-md text-powder">
         {m.site_tagline()}
         {m.footer_copy()}
       </p><p class="mt-8 text-xs tracking-[0.18em] text-powder/70 uppercase">
