@@ -17,11 +17,6 @@ function preferredLocale(request: Request): Locale {
     .find((value) => value.startsWith("PARAGLIDE_LOCALE="))
     ?.split("=")[1];
   if (isLocale(cookie)) return cookie;
-  const languages = request.headers.get("accept-language")?.toLowerCase() ?? "";
-  for (const entry of languages.split(",")) {
-    const code = entry.trim().split(";")[0]?.split("-")[0];
-    if (isLocale(code)) return code;
-  }
   return "he";
 }
 
