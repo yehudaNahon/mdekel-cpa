@@ -18,14 +18,14 @@ const href = localePath(`/articles/${postSlug(post.id)}/`, locale);
       post.data.heroImage ? (
         <img
           src={post.data.heroImage}
-          alt=""
+          alt={post.data.title}
           width="720"
-          height="420"
+          height="402"
           loading="lazy"
-          class="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+          class="aspect-[16/9] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
         />
       ) : (
-        <div class="aspect-[4/3] w-full bg-powder" />
+        <div class="aspect-[16/9] w-full bg-powder" />
       )
     }
   </a>

@@ -54,7 +54,7 @@ const { title, description, pubDate, updatedDate, heroImage, locale } =
         <div class="mx-auto -mb-8 max-w-6xl px-5 pt-16 sm:px-8 lg:pt-20">
           <img
             src={heroImage}
-            alt=""
+            alt={title}
             width="1200"
             height="675"
             class="aspect-[16/9] w-full object-cover shadow-soft"
@@ -65,7 +65,7 @@ const { title, description, pubDate, updatedDate, heroImage, locale } =
 
     <div class="mx-auto max-w-3xl px-5 py-24 sm:px-8 lg:py-32">
       <div
-        class="prose prose-lg prose-headings:font-display prose-headings:font-normal prose-headings:text-ink prose-p:text-ink-soft prose-a:text-coral-dark prose-a:decoration-coral prose-strong:text-ink prose-blockquote:border-coral prose-blockquote:text-ink prose-code:text-ink prose-pre:bg-ink prose-img:rounded-none max-w-none"
+        class="prose prose-lg prose-headings:font-display prose-headings:font-normal prose-headings:text-ink prose-p:text-ink-soft prose-a:text-coral-dark prose-a:decoration-coral prose-strong:text-ink prose-blockquote:border-coral prose-blockquote:text-ink prose-code:text-ink prose-pre:bg-ink prose-img:rounded-none prose-table:block prose-table:max-w-full prose-table:overflow-x-auto max-w-none"
       >
         <slot />
       </div>
