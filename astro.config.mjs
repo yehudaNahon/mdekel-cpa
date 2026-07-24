@@ -35,7 +35,9 @@ export default defineConfig({
     routing: "manual",
   },
   integrations: [mdx(), sitemap()],
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    prerenderEnvironment: "node",
+  }),
   vite: {
     plugins: [
       paraglideVitePlugin({

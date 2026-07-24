@@ -44,8 +44,9 @@
   "scripts": {
     "astro": "astro",
     "build": "astro build",
+    "build:check": "node scripts/check-build-output.mjs",
     "cf-typegen": "wrangler types",
-    "check": "npm run lint && npm run build && tsc && wrangler deploy --dry-run",
+    "check": "npm run lint && npm run build && npm run build:check && tsc && wrangler deploy --dry-run",
     "deploy": "wrangler deploy",
     "dev": "astro dev",
     "format": "prettier --write .",
