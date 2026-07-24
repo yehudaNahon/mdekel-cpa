@@ -58,6 +58,8 @@ const navIsActive = (href: string) =>
       <LanguageSwitcher locale={locale} canonicalPath={canonicalPath} />
       <a
         href={contactHref}
+        target="_blank"
+        rel="noopener noreferrer"
         aria-label={m.whatsapp_link_label()}
         class="hidden items-center gap-2 bg-coral px-5 py-3 text-sm font-bold tracking-wider text-ink uppercase transition hover:bg-coral-dark hover:text-white lg:inline-flex"
       >

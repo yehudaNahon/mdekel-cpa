@@ -51,6 +51,8 @@ const navItems: Array<{ href: string; label: string; isContact?: boolean }> = [
             <li>
               <a
                 href={item.href}
+                target={item.isContact ? "_blank" : undefined}
+                rel={item.isContact ? "noopener noreferrer" : undefined}
                 aria-label={
                   item.isContact ? m.whatsapp_link_label() : undefined
                 }
@@ -72,6 +74,8 @@ const navItems: Array<{ href: string; label: string; isContact?: boolean }> = [
           <p class="text-xs font-bold uppercase">{m.label_phone()}</p>
           <a
             href={contactHref}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label={m.whatsapp_link_label()}
             class="mt-1 inline-flex items-center gap-2 hover:text-white"
           >
