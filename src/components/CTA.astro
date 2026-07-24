@@ -1,7 +1,8 @@
 ---
-import { SITE } from "../consts";
-import { localePath, type Locale } from "../i18n/config";
+import { whatsappHref } from "../consts";
+import type { Locale } from "../i18n/config";
 import { m } from "../paraglide/messages.js";
+import WhatsAppIcon from "./WhatsAppIcon.astro";
 interface Props {
   locale: Locale;
   eyebrow?: string;
@@ -14,6 +15,7 @@ const {
   title = m.cta_title(),
   description = m.cta_description(),
 } = Astro.props;
+const contactHref = whatsappHref(m.whatsapp_message());
 ---
 
 <section class="bg-powder px-5 py-20 sm:px-8 lg:py-28">
@@ -26,9 +28,12 @@ const {
     </h2>
     <p class="mx-auto mt-6 max-w-2xl text-lg text-ink-soft">{description}</p>
     <a
-      href={localePath(SITE.consultationHref, locale)}
-      class="mt-9 inline-flex bg-ink px-8 py-4 text-sm font-bold tracking-[0.16em] text-white uppercase transition hover:bg-coral-dark"
-      >{m.cta_button()}</a
+      href={contactHref}
+      aria-label={m.whatsapp_link_label()}
+      class="mt-9 inline-flex items-center gap-2 bg-ink px-8 py-4 text-sm font-bold tracking-[0.16em] text-white uppercase transition hover:bg-coral-dark"
     >
+      <WhatsAppIcon />
+      {m.cta_button()}
+    </a>
   </div>
 </section>

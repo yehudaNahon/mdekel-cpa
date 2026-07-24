@@ -1,20 +1,22 @@
 ---
-import { SITE } from "../consts";
+import { SITE, whatsappHref } from "../consts";
 import { localePath, type Locale } from "../i18n/config";
 import { m } from "../paraglide/messages.js";
+import WhatsAppIcon from "./WhatsAppIcon.astro";
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const today = new Date();
-const navItems = [
-  ["/", m.nav_home()],
-  ["/about/", m.nav_about()],
-  ["/services/", m.nav_services()],
-  ["/calculators/", m.nav_calculators()],
-  ["/articles/", m.nav_articles()],
-  ["/contact/", m.nav_contact()],
-] as const;
+const contactHref = whatsappHref(m.whatsapp_message({}, { locale }));
+const navItems: Array<{ href: string; label: string; isContact?: boolean }> = [
+  { href: localePath("/", locale), label: m.nav_home() },
+  { href: localePath("/about/", locale), label: m.nav_about() },
+  { href: localePath("/services/", locale), label: m.nav_services() },
+  { href: localePath("/calculators/", locale), label: m.nav_calculators() },
+  { href: localePath("/articles/", locale), label: m.nav_articles() },
+  { href: contactHref, label: m.nav_contact(), isContact: true },
+];
 ---
 
 <footer class="bg-ink text-white">
@@ -38,8 +40,6 @@ const navItems = [
       <p class="mt-5 max-w-md text-powder">
         {m.site_tagline()}
         {m.footer_copy()}
-      </p><p class="mt-8 text-xs tracking-[0.18em] text-powder/70 uppercase">
-        {m.footer_placeholder()}
       </p>
     </div>
     <div>
@@ -47,13 +47,17 @@ const navItems = [
         {m.footer_explore()}
       </h2><ul class="mt-5 space-y-3">
         {
-          navItems.map(([href, label]) => (
+          navItems.map((item) => (
             <li>
               <a
-                href={localePath(href, locale)}
-                class="text-powder transition hover:text-white"
+                href={item.href}
+                aria-label={
+                  item.isContact ? m.whatsapp_link_label() : undefined
+                }
+                class="inline-flex items-center gap-2 text-powder transition hover:text-white"
               >
-                {label}
+                {item.isContact && <WhatsAppIcon class="size-4" />}
+                {item.label}
               </a>
             </li>
           ))
@@ -64,11 +68,24 @@ const navItems = [
       <h2 class="text-xs font-bold tracking-[0.2em] text-coral uppercase">
         {m.footer_contact()}
       </h2><address class="mt-5 space-y-3 text-powder not-italic">
-        <p>
-          <a href={`mailto:${SITE.email}`} class="hover:text-white"
-            >{SITE.email}</a
+        <div>
+          <p class="text-xs font-bold uppercase">{m.label_phone()}</p>
+          <a
+            href={contactHref}
+            aria-label={m.whatsapp_link_label()}
+            class="mt-1 inline-flex items-center gap-2 hover:text-white"
           >
-        </p>
+            <WhatsAppIcon />
+            <bdi>{SITE.whatsappDisplay}</bdi>
+          </a>
+        </div>
+        <div>
+          <p class="text-xs font-bold uppercase">{m.label_email()}</p>
+          <a
+            href={`mailto:${SITE.email}`}
+            class="mt-1 inline-block hover:text-white">{SITE.email}</a
+          >
+        </div>
       </address>
     </div>
   </div>

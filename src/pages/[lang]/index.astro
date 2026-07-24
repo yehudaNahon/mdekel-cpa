@@ -7,6 +7,8 @@ import ArticleCard from "../../components/ArticleCard.astro";
 import CTA from "../../components/CTA.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import ServiceCard from "../../components/ServiceCard.astro";
+import WhatsAppIcon from "../../components/WhatsAppIcon.astro";
+import { whatsappHref } from "../../consts";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import { LOCALES, isLocale, localePath } from "../../i18n/config";
 import { m } from "../../paraglide/messages.js";
@@ -15,6 +17,7 @@ export function getStaticPaths() {
 }
 const locale = Astro.params.lang;
 if (!isLocale(locale)) return Astro.redirect("/he/");
+const contactHref = whatsappHref(m.whatsapp_message({}, { locale }));
 const posts = (await getCollection("articles"))
   .filter((post) => post.data.locale === locale)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -38,15 +41,21 @@ const posts = (await getCollection("articles"))
         </h1><p class="mt-8 max-w-xl text-xl leading-relaxed text-ink-soft">
           {m.home_intro()}
         </p><div class="mt-10 flex flex-wrap gap-4">
-          <a
-            href={localePath("/contact/", locale)}
-            class="bg-ink px-7 py-4 text-sm font-bold tracking-[0.16em] text-white uppercase hover:bg-coral-dark"
-            >{m.home_book()}</a
-          ><a
-            href={localePath("/services/", locale)}
-            class="border border-ink px-7 py-4 text-sm font-bold tracking-[0.16em] text-ink uppercase hover:bg-white"
-            >{m.home_view_services()}</a
+          <button
+            type="button"
+            disabled
+            class="cursor-not-allowed bg-ink px-7 py-4 text-sm font-bold tracking-[0.16em] text-white uppercase"
           >
+            {m.home_book()}
+          </button>
+          <a
+            href={contactHref}
+            aria-label={m.whatsapp_link_label()}
+            class="inline-flex items-center gap-2 border border-ink px-7 py-4 text-sm font-bold tracking-[0.16em] text-ink uppercase hover:bg-white"
+          >
+            <WhatsAppIcon />
+            {m.nav_contact()}
+          </a>
         </div>
       </div>
       <div class="relative mx-auto w-full max-w-lg lg:ms-auto">

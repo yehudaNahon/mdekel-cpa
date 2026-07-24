@@ -1,7 +1,8 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
-import { SITE } from "../consts";
+import WhatsAppIcon from "./WhatsAppIcon.astro";
+import { whatsappHref } from "../consts";
 import { localePath, type Locale } from "../i18n/config";
 import { m } from "../paraglide/messages.js";
 interface Props {
@@ -9,13 +10,13 @@ interface Props {
   canonicalPath: string;
 }
 const { locale, canonicalPath } = Astro.props;
+const contactHref = whatsappHref(m.whatsapp_message({}, { locale }));
 const navItems = [
   { href: "/", label: m.nav_home() },
   { href: "/about/", label: m.nav_about() },
   { href: "/services/", label: m.nav_services() },
   { href: "/calculators/", label: m.nav_calculators() },
   { href: "/articles/", label: m.nav_articles() },
-  { href: "/contact/", label: m.nav_contact() },
 ];
 const navIsActive = (href: string) =>
   href === "/" ? canonicalPath === "/" : canonicalPath.startsWith(href);
@@ -56,10 +57,13 @@ const navIsActive = (href: string) =>
     <div class="flex shrink-0 items-center gap-2 lg:gap-4">
       <LanguageSwitcher locale={locale} canonicalPath={canonicalPath} />
       <a
-        href={localePath(SITE.consultationHref, locale)}
-        class="hidden bg-coral px-5 py-3 text-sm font-bold tracking-wider text-ink uppercase transition hover:bg-coral-dark hover:text-white lg:inline-flex"
-        >{m.nav_talk()}</a
+        href={contactHref}
+        aria-label={m.whatsapp_link_label()}
+        class="hidden items-center gap-2 bg-coral px-5 py-3 text-sm font-bold tracking-wider text-ink uppercase transition hover:bg-coral-dark hover:text-white lg:inline-flex"
       >
+        <WhatsAppIcon />
+        {m.nav_talk()}
+      </a>
       <details class="relative lg:hidden">
         <summary
           class="flex cursor-pointer list-none items-center gap-1 border border-ink/15 px-3 py-2 text-sm tracking-wider uppercase marker:hidden"

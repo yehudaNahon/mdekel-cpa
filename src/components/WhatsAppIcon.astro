@@ -1,0 +1,13 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "size-5" } = Astro.props;
+---
+
+<span
+  aria-hidden="true"
+  class:list={["inline-block shrink-0 bg-current", className]}
+  style="-webkit-mask: url('/icons/whatsapp.svg') center / contain no-repeat; mask: url('/icons/whatsapp.svg') center / contain no-repeat;"
+></span>

@@ -5,13 +5,11 @@ export const SITE_TITLE = "Myri Dekel CPA";
 export const SITE = {
   name: SITE_TITLE,
   email: "mdekel.cpa@gmail.com",
-  consultationHref: "/contact/",
+  whatsappNumber: "972508430072",
+  whatsappDisplay: "050-843-0072",
 };
 
-export const NAV_PATHS = [
-  "/",
-  "/about/",
-  "/services/",
-  "/articles/",
-  "/contact/",
-] as const;
+export const whatsappHref = (message: string): string =>
+  `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+export const NAV_PATHS = ["/", "/about/", "/services/", "/articles/"] as const;
