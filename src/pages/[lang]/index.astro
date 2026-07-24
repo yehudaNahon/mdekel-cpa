@@ -143,6 +143,43 @@ const posts = (await getCollection("articles"))
       </div>
     </div>
   </section>
+  <section class="bg-ink px-5 py-20 text-white sm:px-8 lg:py-24">
+    <div
+      class="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1fr_auto] lg:gap-20"
+    >
+      <div>
+        <p class="text-xs font-bold tracking-[0.26em] text-coral uppercase">
+          {m.reviews_eyebrow()}
+        </p>
+        <h2
+          class="mt-5 max-w-3xl font-display text-4xl leading-tight sm:text-5xl"
+        >
+          {m.reviews_title()}
+        </h2>
+        <p class="mt-5 max-w-2xl text-lg text-powder">
+          {m.reviews_description()}
+        </p>
+      </div>
+      <a
+        href="https://www.bizreviews.co.il/provider/dekel-myri"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group flex min-w-64 items-center justify-between gap-8 border border-white/20 bg-white/5 p-7 text-white transition hover:border-coral hover:bg-white/10 sm:p-8"
+        aria-label={`${m.reviews_link()} — ${m.reviews_external()}`}
+      >
+        <span>
+          <span class="block font-display text-5xl text-coral">5.0</span>
+          <span class="mt-2 block text-sm text-powder"
+            >{m.reviews_rating()}</span
+          >
+        </span>
+        <span
+          class="text-sm font-bold tracking-[0.12em] underline decoration-coral decoration-2 underline-offset-8"
+          >{m.reviews_link()}</span
+        >
+      </a>
+    </div>
+  </section>
   <section class="px-5 py-24 sm:px-8 lg:py-32">
     <div class="mx-auto max-w-7xl">
       <SectionHeading

@@ -30,16 +30,25 @@ const navIsActive = (href: string) =>
   >
     <a
       href={localePath("/", locale)}
-      class="group shrink-0 leading-none text-ink no-underline"
+      class="group flex shrink-0 items-center gap-2.5 leading-none text-ink no-underline sm:gap-3"
       aria-label={`${m.brand_name()} ${m.nav_home()}`}
     >
-      <span class="block font-display text-2xl tracking-[0.08em] sm:text-3xl"
-        >{m.brand_name()}</span
-      >
-      <span
-        class="mt-1 hidden text-[0.6rem] tracking-[0.32em] text-ink-soft uppercase min-[520px]:block"
-        >{m.professional_title()}</span
-      >
+      <img
+        src="/favicon.svg"
+        alt=""
+        width="48"
+        height="48"
+        class="size-10 sm:size-12"
+      />
+      <span>
+        <span class="block font-display text-3xl tracking-[0.06em] sm:text-4xl"
+          >{m.brand_name()}</span
+        >
+        <span
+          class="mt-1 hidden text-[0.5rem] tracking-[0.24em] text-ink-soft uppercase min-[520px]:block"
+          >{m.professional_title()}</span
+        >
+      </span>
     </a>
     <div class="hidden items-center gap-4 lg:flex">
       {
