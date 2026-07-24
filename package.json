@@ -46,6 +46,7 @@
     "dev": "astro dev",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "i18n:check": "node scripts/check-translations.mjs",
     "prepare": "husky",
     "preview": "astro build && wrangler dev"
   },
