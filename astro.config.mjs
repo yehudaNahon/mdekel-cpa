@@ -35,11 +35,7 @@ export default defineConfig({
     routing: "manual",
   },
   integrations: [mdx(), sitemap()],
-  adapter: cloudflare({
-    platformProxy: {
-      enabled: true,
-    },
-  }),
+  adapter: cloudflare(),
   vite: {
     plugins: [
       paraglideVitePlugin({

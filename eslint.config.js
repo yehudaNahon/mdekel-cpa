@@ -1,5 +1,5 @@
 import eslintParserTypeScript from "@typescript-eslint/parser";
-import eslintParserAstro from "astro-eslint-parser";
+import * as eslintParserAstro from "astro-eslint-parser";
 import eslintPluginBetterTailwindcss from "eslint-plugin-better-tailwindcss";
 import { getDefaultSelectors } from "eslint-plugin-better-tailwindcss/defaults";
 import { defineConfig } from "eslint/config";
